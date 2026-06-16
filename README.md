@@ -55,7 +55,7 @@ Each project card follows this structure:
 
 html
 <div class="project-item">
-  <a href="https://your-link.com" class="project-link" target="_blank">
+  <a href="https://suno.com/s/hmLzKrpXl8LqDmoh" class="project-link" target="_blank">
     <span class="icon">🎵</span>        <!-- Emoji or SVG icon -->
     <span class="info">
       <span class="name">Project Name</span>
@@ -113,8 +113,6 @@ Icons used are standard emojis (no external icon packs required)
 Font: Inter by Rasmus Andersson
 
 📬 Contact
-Your Name – @yourhandle – email@example.com
-
-Project Link: https://github.com/yourusername/neon-portfolio
+telephone number: +7(980)541-38-27 GMAIL: f4368178@gmail.com OR fedik8757@gmail.com
 
 ⭐ Don't forget to star this repository if you found it useful!
