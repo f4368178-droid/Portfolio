@@ -1,4 +1,4 @@
-# Neon Portfolio · G-P
+# My portfolio
 
 ![Neon Preview](https://img.shields.io/badge/neon-portfolio-00ffcc?style=for-the-badge&logo=html5&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
