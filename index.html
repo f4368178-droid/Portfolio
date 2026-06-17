@@ -105,12 +105,11 @@
       letter-spacing: 0;
     }
 
-    /* ---- НОВОЕ: ОПИСАНИЕ ПОД НИКНЕЙМОМ ---- */
     .profile-description {
       font-size: 15px;
       color: #8892b0;
       line-height: 1.5;
-      padding: 0 0 0 100px; /* отступ, чтобы текст начинался под ником, а не под аватаркой */
+      padding: 0 0 0 100px;
       margin-top: -6px;
       margin-bottom: 20px;
       letter-spacing: 0.2px;
@@ -176,6 +175,7 @@
       aspect-ratio: 1 / 1;
       display: flex;
       align-items: stretch;
+      flex-direction: column;
     }
 
     .project-item:hover {
@@ -267,6 +267,36 @@
       color: #00ffcc;
       transform: translateX(4px);
       text-shadow: 0 0 30px rgba(0, 255, 200, 0.2);
+    }
+
+    /* ---- НОВОЕ: ОПИСАНИЕ ПОД БЛОКОМ С МУЗЫКОЙ ---- */
+    .project-extra-description {
+      margin-top: 8px;
+      padding: 0 18px 18px 18px;
+      font-size: 13px;
+      color: #8892b0;
+      line-height: 1.5;
+      border-top: 1px solid rgba(0, 255, 200, 0.06);
+      padding-top: 14px;
+      letter-spacing: 0.2px;
+    }
+
+    .project-extra-description strong {
+      color: #00ffcc;
+      font-weight: 600;
+    }
+
+    .project-extra-description .neon-tag {
+      display: inline-block;
+      background: rgba(0, 255, 200, 0.06);
+      border: 1px solid rgba(0, 255, 200, 0.1);
+      border-radius: 20px;
+      padding: 2px 12px;
+      font-size: 11px;
+      color: #00ffcc;
+      margin-right: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     /* Кнопка-ссылка “все проекты” */
@@ -372,7 +402,8 @@
       }
 
       .project-item {
-        aspect-ratio: 1 / 1;
+        aspect-ratio: auto;
+        min-height: 200px;
         max-width: 340px;
         margin: 0 auto;
         width: 100%;
@@ -398,6 +429,11 @@
         font-size: 13px;
       }
 
+      .project-extra-description {
+        font-size: 12px;
+        padding: 12px 16px 16px 16px;
+      }
+
       .footer-action a {
         padding: 14px 20px;
         font-size: 14px;
@@ -406,7 +442,6 @@
 
     @media (max-width: 400px) {
       .project-item {
-        aspect-ratio: 1 / 1;
         max-width: 280px;
       }
     }
@@ -448,7 +483,7 @@
       <div class="badge">Developer</div>
     </div>
 
-    <!-- НОВОЕ ОПИСАНИЕ ПОД НИКНЕЙМОМ -->
+    <!-- ОПИСАНИЕ ПОД НИКНЕЙМОМ -->
     <div class="profile-description">
       👀 <span>HTML, CSS and JS developer</span> i'm creating WebSites and other things on JS.
       My telephone number is +7(980)541-38-27 Email:  @f4368178@gmail.com  Discord: @ffed4ik
@@ -462,7 +497,7 @@
 
     <div class="project-list">
 
-      <!-- Проект 1: ссылка на Suno -->
+      <!-- Проект 1: ссылка на Suno + ДОПОЛНИТЕЛЬНОЕ ОПИСАНИЕ -->
       <div class="project-item">
         <a href="https://suno.com/s/hmLzKrpXl8LqDmoh" class="project-link" target="_blank" rel="noopener noreferrer">
           <span class="icon">🎵</span>
@@ -472,6 +507,13 @@
           </span>
           <span class="arrow">→</span>
         </a>
+        <!-- НОВОЕ ОПИСАНИЕ ПОД КАРТОЧКОЙ -->
+        <div class="project-extra-description">
+          <span class="neon-tag">🎧 single</span>
+          <strong>Экспериментальный трек</strong> 
+          Создан с помощью AI-генерации SUNO. 
+          Текст о городской тоске и серых буднях.
+        </div>
       </div>
 
       <!-- Проект 2 -->
