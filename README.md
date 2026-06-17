@@ -6,7 +6,7 @@
 
 A **cyberpunk-style** personal portfolio page with glowing neon aesthetics, fully responsive and ready to showcase my projects.
 
-![Screenshot]([https://placehold.co/720x400/111118/00ffcc?text=Neon+Portfolio+Preview](https://avatars.mds.yandex.net/i?id=3b1f228913e081cfba067d2b090edda2_l-10936100-images-thumbs&n=13))
+![Image]([https://placehold.co/720x400/111118/00ffcc?text=Neon+Portfolio+Preview](https://avatars.mds.yandex.net/i?id=3b1f228913e081cfba067d2b090edda2_l-10936100-images-thumbs&n=13))
 
 ## ✨ Features
 
