@@ -4,9 +4,9 @@
 ![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
 ![Made with](https://img.shields.io/badge/made%20with-❤️-ff69b4?style=for-the-badge)
 
-A **cyberpunk-style** personal portfolio page with glowing neon aesthetics, fully responsive and ready to showcase your projects.
+A **cyberpunk-style** personal portfolio page with glowing neon aesthetics, fully responsive and ready to showcase my projects.
 
-![Screenshot](https://placehold.co/720x400/111118/00ffcc?text=Neon+Portfolio+Preview)
+![Screenshot]([https://placehold.co/720x400/111118/00ffcc?text=Neon+Portfolio+Preview](https://avatars.mds.yandex.net/i?id=3b1f228913e081cfba067d2b090edda2_l-10936100-images-thumbs&n=13))
 
 ## ✨ Features
 
@@ -15,6 +15,7 @@ A **cyberpunk-style** personal portfolio page with glowing neon aesthetics, full
 - **Project Grid** – Square cards with icons, titles, and descriptions
 - **Interactive Elements** – Smooth hover effects and tactile click feedback
 - **Customizable** – Easy to update your name, bio, and project links
+- **Gojo Satoru** - HAS BEEN SEALED
 
 ## 🚀 Quick Start
 
