@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>G-P · неоновая визитка</title>
+  <title>FED4IK · неоновое портфолио</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
@@ -23,22 +23,122 @@
       justify-content: center;
       padding: 30px;
       color: #e0e0ff;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    /* --- УВЕЛИЧЕННАЯ КАРТОЧКА --- */
-    .card {
-      max-width: 960px;        /* было 720px — теперь ещё шире */
+    /* --- ФОНОВЫЕ ЧАСТИЦЫ --- */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      background: #111118;
-      border-radius: 48px;
-      padding: 48px 44px 52px;  /* увеличенные отступы */
-      box-shadow: 0 0 80px rgba(0, 255, 200, 0.08), 0 0 160px rgba(120, 0, 255, 0.06);
-      border: 1px solid rgba(0, 255, 200, 0.15);
-      transition: all 0.3s ease;
-      position: relative;
+      height: 100%;
+      background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(0, 255, 200, 0.15), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(136, 0, 255, 0.15), transparent),
+        radial-gradient(2px 2px at 50px 160px, rgba(0, 255, 200, 0.15), transparent),
+        radial-gradient(2px 2px at 90px 40px, rgba(136, 0, 255, 0.15), transparent),
+        radial-gradient(2px 2px at 130px 80px, rgba(0, 255, 200, 0.15), transparent);
+      background-size: 200px 200px;
+      pointer-events: none;
+      z-index: 0;
+      animation: particlesFloat 20s linear infinite;
+    }
+
+    @keyframes particlesFloat {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* --- ПАДАЮЩИЕ НЕОНОВЫЕ ЛИСТЬЯ --- */
+    .leaves-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
       overflow: hidden;
     }
 
+    .leaf {
+      position: absolute;
+      top: -60px;
+      font-size: 24px;
+      opacity: 0;
+      animation: leafFall linear infinite;
+      filter: drop-shadow(0 0 8px rgba(0, 255, 200, 0.3));
+    }
+
+    /* Разные листья с разными цветами и анимациями */
+    .leaf:nth-child(1) { left: 5%; animation-duration: 12s; animation-delay: 0s; font-size: 28px; color: #00ffcc; }
+    .leaf:nth-child(2) { left: 15%; animation-duration: 14s; animation-delay: 2s; font-size: 20px; color: #a855f7; }
+    .leaf:nth-child(3) { left: 25%; animation-duration: 10s; animation-delay: 4s; font-size: 32px; color: #00ffaa; }
+    .leaf:nth-child(4) { left: 35%; animation-duration: 16s; animation-delay: 1s; font-size: 22px; color: #7c3aed; }
+    .leaf:nth-child(5) { left: 45%; animation-duration: 11s; animation-delay: 3s; font-size: 26px; color: #00ffcc; }
+    .leaf:nth-child(6) { left: 55%; animation-duration: 13s; animation-delay: 5s; font-size: 30px; color: #a855f7; }
+    .leaf:nth-child(7) { left: 65%; animation-duration: 15s; animation-delay: 2s; font-size: 18px; color: #00ffaa; }
+    .leaf:nth-child(8) { left: 75%; animation-duration: 9s; animation-delay: 4s; font-size: 34px; color: #7c3aed; }
+    .leaf:nth-child(9) { left: 85%; animation-duration: 12s; animation-delay: 1s; font-size: 24px; color: #00ffcc; }
+    .leaf:nth-child(10) { left: 95%; animation-duration: 14s; animation-delay: 3s; font-size: 20px; color: #a855f7; }
+    .leaf:nth-child(11) { left: 10%; animation-duration: 18s; animation-delay: 6s; font-size: 16px; color: #00ffaa; }
+    .leaf:nth-child(12) { left: 50%; animation-duration: 20s; animation-delay: 8s; font-size: 36px; color: #7c3aed; }
+    .leaf:nth-child(13) { left: 70%; animation-duration: 11s; animation-delay: 7s; font-size: 22px; color: #00ffcc; }
+    .leaf:nth-child(14) { left: 30%; animation-duration: 17s; animation-delay: 9s; font-size: 28px; color: #a855f7; }
+    .leaf:nth-child(15) { left: 88%; animation-duration: 13s; animation-delay: 5s; font-size: 26px; color: #00ffaa; }
+
+    @keyframes leafFall {
+      0% {
+        transform: translateY(-60px) rotate(0deg) scale(0.5);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.9;
+        transform: translateY(0px) rotate(20deg) scale(1);
+      }
+      90% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(calc(100vh + 100px)) rotate(720deg) scale(0.3);
+        opacity: 0;
+      }
+    }
+
+    /* Добавляем эффект мерцания для листьев */
+    .leaf {
+      animation: leafFall linear infinite, leafGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes leafGlow {
+      0% { filter: drop-shadow(0 0 5px rgba(0, 255, 200, 0.2)) brightness(0.8); }
+      100% { filter: drop-shadow(0 0 20px rgba(0, 255, 200, 0.5)) brightness(1.2); }
+    }
+
+    .card {
+      max-width: 1100px;
+      width: 100%;
+      background: #111118;
+      border-radius: 48px;
+      padding: 48px 44px 52px;
+      box-shadow: 0 0 80px rgba(0, 255, 200, 0.08), 0 0 160px rgba(120, 0, 255, 0.06);
+      border: 1px solid rgba(0, 255, 200, 0.15);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      animation: cardAppear 0.8s ease-out;
+    }
+
+    @keyframes cardAppear {
+      0% { opacity: 0; transform: translateY(30px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* --- Анимированный неоновый фон-эффект --- */
     .card::before {
       content: '';
       position: absolute;
@@ -50,6 +150,34 @@
                   radial-gradient(circle at 70% 80%, rgba(180, 0, 255, 0.05), transparent 60%);
       pointer-events: none;
       z-index: 0;
+      animation: neonPulse 6s ease-in-out infinite;
+    }
+
+    @keyframes neonPulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* --- Дополнительный эффект: движущаяся линия --- */
+    .card::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 48px;
+      background: linear-gradient(45deg, transparent, rgba(0, 255, 200, 0.03), transparent, rgba(136, 0, 255, 0.03), transparent);
+      background-size: 400% 400%;
+      animation: borderGlow 8s ease-in-out infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes borderGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .card > * {
@@ -57,7 +185,7 @@
       z-index: 1;
     }
 
-    /* --- УВЕЛИЧЕННАЯ ШАПКА --- */
+    /* --- ШАПКА --- */
     .profile {
       display: flex;
       align-items: center;
@@ -67,7 +195,7 @@
     }
 
     .avatar {
-      width: 100px;            /* было 80px */
+      width: 100px;
       height: 100px;
       background: linear-gradient(145deg, #00ffcc, #8800ff);
       border-radius: 32px;
@@ -75,15 +203,27 @@
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 40px;         /* было 32px */
+      font-size: 40px;
       color: #0a0a0f;
       box-shadow: 0 0 50px rgba(0, 255, 200, 0.3), 0 0 100px rgba(136, 0, 255, 0.2);
       flex-shrink: 0;
       border: 1px solid rgba(0, 255, 200, 0.3);
+      animation: avatarFloat 4s ease-in-out infinite;
+      transition: transform 0.3s ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.05) rotate(-3deg);
+      box-shadow: 0 0 70px rgba(0, 255, 200, 0.4), 0 0 120px rgba(136, 0, 255, 0.3);
+    }
+
+    @keyframes avatarFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
 
     .greeting {
-      font-size: 36px;         /* было 28px */
+      font-size: 36px;
       font-weight: 700;
       letter-spacing: -0.3px;
       line-height: 1.2;
@@ -92,11 +232,17 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-shadow: 0 0 40px rgba(0, 255, 200, 0.15);
+      animation: textGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes textGlow {
+      0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 255, 200, 0.1)); }
+      50% { filter: drop-shadow(0 0 25px rgba(0, 255, 200, 0.2)); }
     }
 
     .greeting small {
       display: block;
-      font-size: 18px;         /* было 16px */
+      font-size: 18px;
       font-weight: 400;
       color: #8892b0;
       -webkit-text-fill-color: #8892b0;
@@ -104,29 +250,40 @@
       text-shadow: none;
       margin-top: 4px;
       letter-spacing: 0;
+      animation: none;
     }
 
     .profile-description {
-      font-size: 17px;         /* было 15px */
+      font-size: 17px;
       color: #8892b0;
       line-height: 1.6;
-      padding: 0 0 0 124px;    /* отступ под аватар */
+      padding: 0 0 0 124px;
       margin-top: -8px;
       margin-bottom: 24px;
       letter-spacing: 0.2px;
       border-left: 2px solid rgba(0, 255, 200, 0.15);
       padding-left: 24px;
+      transition: border-color 0.3s ease;
+    }
+
+    .profile-description:hover {
+      border-left-color: rgba(0, 255, 200, 0.4);
     }
 
     .profile-description span {
       color: #00ffcc;
       font-weight: 500;
+      transition: text-shadow 0.3s ease;
+    }
+
+    .profile-description span:hover {
+      text-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
     }
 
     .badge {
       background: rgba(0, 255, 200, 0.08);
       color: #00ffcc;
-      font-size: 16px;         /* было 14px */
+      font-size: 16px;
       font-weight: 600;
       padding: 8px 22px;
       border-radius: 40px;
@@ -136,16 +293,73 @@
       box-shadow: 0 0 20px rgba(0, 255, 200, 0.05);
       letter-spacing: 0.5px;
       text-transform: uppercase;
+      transition: all 0.3s ease;
+      animation: badgePulse 3s ease-in-out infinite;
     }
 
-    /* --- УВЕЛИЧЕННЫЙ ЗАГОЛОВОК ПРОЕКТОВ --- */
+    @keyframes badgePulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 200, 0.05); }
+      50% { box-shadow: 0 0 40px rgba(0, 255, 200, 0.15); }
+    }
+
+    .badge:hover {
+      background: rgba(0, 255, 200, 0.15);
+      border-color: rgba(0, 255, 200, 0.4);
+      transform: scale(1.03);
+    }
+
+    /* --- КОНТАКТЫ --- */
+    .contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      margin-bottom: 32px;
+      padding-left: 124px;
+      font-size: 15px;
+      color: #8892b0;
+    }
+
+    .contacts a {
+      color: #8892b0;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(0, 255, 200, 0.1);
+      padding-bottom: 2px;
+      position: relative;
+    }
+
+    .contacts a::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #00ffcc;
+      transition: width 0.3s ease;
+    }
+
+    .contacts a:hover {
+      color: #00ffcc;
+      border-bottom-color: transparent;
+    }
+
+    .contacts a:hover::after {
+      width: 100%;
+    }
+
+    .contacts .separator {
+      color: #4a5568;
+    }
+
+    /* --- ЗАГОЛОВОК ПРОЕКТОВ --- */
     .projects-title {
-      font-size: 20px;         /* было 18px */
+      font-size: 22px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: #8892b0;
-      margin: 34px 0 24px 0;
+      margin: 34px 0 20px 0;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -155,242 +369,340 @@
       background: rgba(136, 0, 255, 0.1);
       padding: 2px 16px;
       border-radius: 30px;
-      font-size: 14px;         /* было 13px */
+      font-size: 14px;
       color: #a855f7;
       border: 1px solid rgba(136, 0, 255, 0.15);
+      transition: all 0.3s ease;
     }
 
-    /* --- УВЕЛИЧЕННАЯ СЕТКА ПРОЕКТОВ --- */
+    .projects-title span:hover {
+      background: rgba(136, 0, 255, 0.2);
+      box-shadow: 0 0 30px rgba(136, 0, 255, 0.1);
+    }
+
+    .projects-sub {
+      font-size: 14px;
+      color: #4a5568;
+      margin-bottom: 28px;
+      letter-spacing: 0.3px;
+      animation: subtlePulse 4s ease-in-out infinite;
+    }
+
+    @keyframes subtlePulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* --- СЕТКА ПРОЕКТОВ --- */
     .project-list {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;              /* было 16px */
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
 
     .project-item {
       background: rgba(255, 255, 255, 0.03);
-      border-radius: 28px;     /* было 24px */
-      transition: all 0.25s ease;
+      border-radius: 28px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       border: 1px solid rgba(255, 255, 255, 0.04);
       backdrop-filter: blur(4px);
-      aspect-ratio: 1 / 1;
       display: flex;
       flex-direction: column;
-      align-items: stretch;
+      padding: 24px 22px 22px;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    .project-item::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(0, 255, 200, 0.03), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
     }
 
     .project-item:hover {
-      border-color: rgba(0, 255, 200, 0.25);
-      box-shadow: 0 0 50px rgba(0, 255, 200, 0.06);
+      border-color: rgba(0, 255, 200, 0.3);
+      box-shadow: 0 0 60px rgba(0, 255, 200, 0.08), inset 0 0 60px rgba(0, 255, 200, 0.02);
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    .project-item:hover::before {
+      opacity: 1;
     }
 
     .project-item:active {
-      transform: scale(0.96);
-      background: rgba(0, 255, 200, 0.03);
+      transform: scale(0.97);
     }
 
-    .project-link {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 24px 22px;      /* было 20px 18px */
-      text-decoration: none;
-      color: #e0e0ff;
-      font-weight: 500;
-      font-size: 19px;         /* было 17px */
-      gap: 12px;              /* было 10px */
+    /* --- Эффект скользящей подсветки для карточек --- */
+    .project-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
       width: 100%;
-      border-radius: 28px;
-      transition: all 0.25s ease;
-      cursor: pointer;
-      border: none;
-      background: transparent;
-      flex: 1;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 200, 0.03), transparent);
+      transition: left 0.8s ease;
+      pointer-events: none;
     }
 
-    .project-link .icon {
-      font-size: 40px;         /* было 32px */
-      line-height: 1;
-      flex-shrink: 0;
-      width: 64px;             /* было 52px */
-      height: 64px;
-      background: rgba(0, 255, 200, 0.04);
-      border-radius: 18px;     /* было 16px */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(0, 255, 200, 0.06);
-      transition: all 0.25s ease;
-      margin-bottom: 6px;      /* было 4px */
+    .project-item:hover::after {
+      left: 100%;
     }
 
-    .project-item:hover .project-link .icon {
-      border-color: rgba(0, 255, 200, 0.25);
-      box-shadow: 0 0 40px rgba(0, 255, 200, 0.06);
-    }
-
-    .project-link .info {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;               /* было 2px */
-      width: 100%;
-    }
-
-    .project-link .info .name {
-      font-weight: 600;
-      font-size: 20px;         /* было 17px */
-      letter-spacing: -0.2px;
-      transition: color 0.25s ease;
-      line-height: 1.2;
-    }
-
-    .project-item:hover .project-link .info .name {
-      color: #00ffcc;
-    }
-
-    .project-link .info .desc {
-      font-weight: 400;
-      font-size: 15px;         /* было 13px */
-      color: #8892b0;
-      line-height: 1.4;
-    }
-
-    .project-link .arrow {
-      color: #4a5568;
-      font-size: 24px;         /* было 20px */
-      transition: all 0.25s ease;
-      margin-top: auto;
-      align-self: flex-end;
-    }
-
-    .project-item:hover .project-link .arrow {
-      color: #00ffcc;
-      transform: translateX(4px);
-      text-shadow: 0 0 30px rgba(0, 255, 200, 0.2);
-    }
-
-    /* --- УВЕЛИЧЕННОЕ ОПИСАНИЕ ПОД ПРОЕКТОМ --- */
-    .project-extra-description {
-      margin-top: 8px;
-      padding: 0 22px 22px 22px;
-      font-size: 14px;         /* было 13px */
-      color: #8892b0;
-      line-height: 1.6;
-      border-top: 1px solid rgba(0, 255, 200, 0.06);
-      padding-top: 16px;
-      letter-spacing: 0.2px;
-    }
-
-    .project-extra-description strong {
-      color: #00ffcc;
-      font-weight: 600;
-    }
-
-    .project-extra-description .neon-tag {
+    .project-tag {
       display: inline-block;
       background: rgba(0, 255, 200, 0.06);
       border: 1px solid rgba(0, 255, 200, 0.1);
       border-radius: 20px;
       padding: 2px 14px;
-      font-size: 12px;         /* было 11px */
+      font-size: 11px;
       color: #00ffcc;
-      margin-right: 6px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      align-self: flex-start;
+      transition: all 0.3s ease;
     }
 
-    /* --- УВЕЛИЧЕННАЯ КНОПКА --- */
-    .footer-action {
-      margin-top: 38px;        /* было 34px */
-      display: flex;
-      justify-content: center;
+    .project-item:hover .project-tag {
+      background: rgba(0, 255, 200, 0.12);
+      border-color: rgba(0, 255, 200, 0.3);
+      box-shadow: 0 0 20px rgba(0, 255, 200, 0.05);
     }
 
-    .footer-action a {
-      background: rgba(0, 255, 200, 0.03);
-      border: 1px solid rgba(0, 255, 200, 0.1);
-      padding: 18px 36px;      /* было 16px 32px */
-      border-radius: 60px;
-      font-weight: 500;
-      font-size: 18px;         /* было 16px */
-      color: #8892b0;
-      text-decoration: none;
-      transition: all 0.25s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;              /* было 10px */
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-      width: 100%;
-      justify-content: center;
-      backdrop-filter: blur(4px);
+    .project-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: #e0e0ff;
+      margin-bottom: 6px;
+      transition: all 0.3s ease;
     }
 
-    .footer-action a:hover {
-      border-color: rgba(0, 255, 200, 0.35);
+    .project-item:hover .project-name {
       color: #00ffcc;
-      box-shadow: 0 0 60px rgba(0, 255, 200, 0.06);
+      transform: translateX(2px);
     }
 
-    .footer-action a:active {
-      transform: scale(0.97);
+    .project-desc {
+      font-size: 14px;
+      color: #8892b0;
+      line-height: 1.5;
+      margin-bottom: 14px;
+      flex: 1;
+      transition: color 0.3s ease;
     }
 
-    .footer-action a span {
-      font-size: 22px;         /* было 20px */
+    .project-item:hover .project-desc {
+      color: #a0a8c0;
     }
 
-    /* --- ПОДВАЛ --- */
-    .footer-note {
-      margin-top: 32px;        /* было 28px */
-      text-align: center;
-      font-size: 15px;         /* было 14px */
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .project-tech span {
+      background: rgba(136, 0, 255, 0.08);
+      border: 1px solid rgba(136, 0, 255, 0.1);
+      border-radius: 16px;
+      padding: 2px 12px;
+      font-size: 12px;
+      color: #a855f7;
+      transition: all 0.3s ease;
+    }
+
+    .project-item:hover .project-tech span {
+      background: rgba(136, 0, 255, 0.15);
+      border-color: rgba(136, 0, 255, 0.2);
+      box-shadow: 0 0 15px rgba(136, 0, 255, 0.05);
+    }
+
+    .project-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 14px;
+      margin-top: auto;
+    }
+
+    .project-footer .extra-tag {
+      font-size: 12px;
       color: #4a5568;
-      letter-spacing: 0.3px;
     }
 
-    .footer-note span {
+    .project-footer .extra-tag strong {
+      color: #00ffcc;
+      font-weight: 500;
+    }
+
+    .project-link-btn {
+      color: #4a5568;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      position: relative;
+    }
+
+    .project-link-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #00ffcc;
+      transition: width 0.3s ease;
+    }
+
+    .project-link-btn:hover {
+      color: #00ffcc;
+    }
+
+    .project-link-btn:hover::after {
+      width: 100%;
+    }
+
+    .project-link-btn .arrow {
+      font-size: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .project-link-btn:hover .arrow {
+      transform: translateX(6px);
+    }
+
+    /* --- ДОСТИЖЕНИЯ --- */
+    .achievements {
+      margin-top: 44px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(0, 255, 200, 0.08);
+      position: relative;
+    }
+
+    .achievements::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 200, 0.2), transparent);
+      animation: lineSlide 4s ease-in-out infinite;
+    }
+
+    @keyframes lineSlide {
+      0% { transform: scaleX(0); transform-origin: left; }
+      50% { transform: scaleX(1); transform-origin: center; }
+      100% { transform: scaleX(0); transform-origin: right; }
+    }
+
+    .achievements-title {
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #8892b0;
+      margin-bottom: 16px;
+    }
+
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .achievement-item {
       background: rgba(255, 255, 255, 0.02);
-      padding: 6px 24px;
-      border-radius: 40px;
+      border-radius: 20px;
+      padding: 18px 20px;
       border: 1px solid rgba(255, 255, 255, 0.04);
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .achievement-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(0, 255, 200, 0.03), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .achievement-item:hover {
+      border-color: rgba(0, 255, 200, 0.2);
+      box-shadow: 0 0 40px rgba(0, 255, 200, 0.05);
+      transform: translateY(-3px);
+    }
+
+    .achievement-item:hover::before {
+      opacity: 1;
+    }
+
+    .achievement-item .number {
+      font-size: 28px;
+      font-weight: 700;
+      color: #00ffcc;
+      display: block;
+      margin-bottom: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .achievement-item:hover .number {
+      text-shadow: 0 0 30px rgba(0, 255, 200, 0.2);
+      transform: scale(1.05);
+    }
+
+    .achievement-item .label {
+      font-size: 14px;
+      color: #8892b0;
+      transition: color 0.3s ease;
+    }
+
+    .achievement-item:hover .label {
+      color: #a0a8c0;
     }
 
     /* --- АДАПТИВНОСТЬ --- */
-    @media (max-width: 820px) {
-      .card {
-        max-width: 720px;
-        padding: 36px 30px 40px;
+    @media (max-width: 900px) {
+      .project-list {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .avatar {
-        width: 80px;
-        height: 80px;
-        font-size: 32px;
+      .achievements-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .greeting {
-        font-size: 28px;
-      }
-
-      .greeting small {
-        font-size: 16px;
+      .contacts {
+        padding-left: 0;
       }
 
       .profile-description {
-        font-size: 15px;
-        padding-left: 104px;
-        padding-left: 20px;
-      }
-
-      .project-link .icon {
-        width: 52px;
-        height: 52px;
-        font-size: 32px;
-      }
-
-      .project-link .info .name {
-        font-size: 18px;
+        padding-left: 0;
+        border-left: none;
+        border-top: 1px solid rgba(0, 255, 200, 0.08);
+        padding-top: 14px;
+        margin-top: 0;
       }
     }
 
@@ -413,7 +725,7 @@
       }
 
       .greeting {
-        font-size: 22px;
+        font-size: 24px;
       }
 
       .greeting small {
@@ -429,17 +741,13 @@
 
       .profile-description {
         font-size: 14px;
-        padding-left: 0;
-        margin-top: 0;
-        margin-bottom: 16px;
-        border-left: none;
-        border-top: 1px solid rgba(0, 255, 200, 0.08);
         padding-top: 12px;
       }
 
-      .projects-title {
-        font-size: 16px;
-        margin: 24px 0 16px 0;
+      .contacts {
+        font-size: 13px;
+        gap: 8px 14px;
+        margin-bottom: 24px;
       }
 
       .project-list {
@@ -448,181 +756,214 @@
       }
 
       .project-item {
-        aspect-ratio: auto;
-        min-height: 200px;
-        max-width: 340px;
-        margin: 0 auto;
-        width: 100%;
+        padding: 18px 16px 16px;
       }
 
-      .project-link {
-        padding: 18px 16px;
-        font-size: 16px;
-        gap: 8px;
-      }
-
-      .project-link .icon {
-        width: 44px;
-        height: 44px;
-        font-size: 26px;
-      }
-
-      .project-link .info .name {
-        font-size: 16px;
-      }
-
-      .project-link .info .desc {
-        font-size: 13px;
-      }
-
-      .project-extra-description {
-        font-size: 13px;
-        padding: 12px 16px 16px 16px;
-      }
-
-      .footer-action {
-        margin-top: 28px;
-      }
-
-      .footer-action a {
-        padding: 14px 20px;
-        font-size: 14px;
-      }
-
-      .footer-action a span {
+      .project-name {
         font-size: 18px;
       }
 
-      .footer-note {
-        font-size: 13px;
-        margin-top: 24px;
+      .achievements-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .achievement-item {
+        padding: 14px 12px;
+      }
+
+      .achievement-item .number {
+        font-size: 22px;
+      }
+
+      .card::after {
+        border-radius: 32px;
+      }
+
+      .leaf {
+        font-size: 16px !important;
       }
     }
 
     @media (max-width: 400px) {
-      .project-item {
-        max-width: 280px;
+      .achievements-grid {
+        grid-template-columns: 1fr;
       }
-    }
-
-    /* Анимация появления */
-    .card {
-      animation: neonFade 0.6s ease-out;
-    }
-
-    @keyframes neonFade {
-      0% { opacity: 0; transform: translateY(20px) scale(0.96); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* Фокус для доступности */
-    .project-link:focus-visible {
-      outline: 2px solid #00ffcc;
-      outline-offset: 2px;
-      border-radius: 24px;
-    }
-
-    .footer-action a:focus-visible {
-      outline: 2px solid #00ffcc;
-      outline-offset: 2px;
-      border-radius: 60px;
     }
   </style>
 </head>
 <body>
+
+  <!-- ПАДАЮЩИЕ НЕОНОВЫЕ ЛИСТЬЯ -->
+  <div class="leaves-container">
+    <div class="leaf">🍃</div>
+    <div class="leaf">🍂</div>
+    <div class="leaf">🌿</div>
+    <div class="leaf">🍃</div>
+    <div class="leaf">🍂</div>
+    <div class="leaf">🌿</div>
+    <div class="leaf">🍃</div>
+    <div class="leaf">🍂</div>
+    <div class="leaf">🌿</div>
+    <div class="leaf">🍃</div>
+    <div class="leaf">🍂</div>
+    <div class="leaf">🌿</div>
+    <div class="leaf">🍃</div>
+    <div class="leaf">🍂</div>
+    <div class="leaf">🌿</div>
+  </div>
+
   <div class="card" role="main">
 
-    <!-- Шапка визитки -->
+    <!-- ШАПКА -->
     <div class="profile">
       <div class="avatar" aria-hidden="true">✦</div>
       <div class="greeting">
         FED4IK
-        <small>My projects</small>
+        <small>junior dev</small>
       </div>
-      <div class="badge">Developer</div>
+      <div class="badge">Курсы · 2026</div>
     </div>
 
-    <!-- ОПИСАНИЕ ПОД НИКНЕЙМОМ -->
+    <!-- ОПИСАНИЕ -->
     <div class="profile-description">
-      👀 <span>HTML, CSS and JS developer</span> i'm creating WebSites and other things on JS.
-      My telephone number is +7(980)541-38-27 Email:  @f4368178@gmail.com  Discord: @ffed4ik
+      👀 <span>HTML, CSS and JS developer</span> создаю веб-сайты, экспериментирую с AI и музыкой.
+      Люблю неон и минимализм.
     </div>
 
-    <!-- Список проектов -->
-    <div class="projects-title">
-      <span>◈</span> projects
-      <span>4</span>
+    <!-- КОНТАКТЫ -->
+    <div class="contacts">
+      <span>📍 Минск</span>
+      <span class="separator">·</span>
+      <span>5+ проектов</span>
+      <span class="separator">·</span>
+      <a href="https://github.com/f4368178-droid" target="_blank">github/f4368178-droid</a>
+      <span class="separator">·</span>
+      <a href="mailto:f4368178@gmail.com">f4368178@gmail.com</a>
     </div>
+
+    <!-- ПРОЕКТЫ -->
+    <div class="projects-title">
+      <span>◈</span> Мои проекты
+      <span>5</span>
+    </div>
+    <div class="projects-sub">(кликни по карточке)</div>
 
     <div class="project-list">
 
-      <!-- Проект 1: ссылка на Suno -->
+      <!-- Проект 1: Музычка -->
       <div class="project-item">
-        <a href="https://suno.com/s/hmLzKrpXl8LqDmoh" class="project-link" target="_blank" rel="noopener noreferrer">
-          <span class="icon">🎵</span>
-          <span class="info">
-            <span class="name">Song on SUNO</span>
-            <span class="desc">"Серый снег-фонари"</span>
-          </span>
-          <span class="arrow">→</span>
-        </a>
-        <div class="project-extra-description">
-          <span class="neon-tag">🎧 single</span>
-          <strong>Экспериментальный трек</strong> в жанре lo-fi / ambient. 
-          Создан с помощью AI-генерации SUNO. 
-          Текст о городской тоске и серых буднях.
+        <span class="project-tag">🎵 музыка</span>
+        <div class="project-name">Песня «Серый снег-фонари»</div>
+        <div class="project-desc">Экспериментальный lo-fi / ambient трек о городской тоске.</div>
+        <div class="project-tech">
+          <span>Suno AI</span>
+          <span>Автор текста</span>
+        </div>
+        <div class="project-footer">
+          <span class="extra-tag"><strong>🎧</strong> Инди-поп</span>
+          <a href="https://suno.com/s/hmLzKrpXl8LqDmoh" class="project-link-btn" target="_blank">
+            Слушать <span class="arrow">→</span>
+          </a>
         </div>
       </div>
 
-      <!-- Проект 2 -->
+      <!-- Проект 2: Сайт-открытка -->
       <div class="project-item">
-        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-          <span class="icon">?</span>
-          <span class="info">
-            <span class="name">???</span>
-            <span class="desc">?????</span>
-          </span>
-          <span class="arrow">→</span>
-        </a>
+        <span class="project-tag">🎨 Игра</span>
+        <div class="project-name">Неоновый сапер</div>
+        <div class="project-desc">Обычный сапер с 3 сложностями и статистикой</div>
+        <div class="project-tech">
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>Html</span>
+        </div>
+        <div class="project-footer">
+          <span class="extra-tag"><strong>✨</strong>Развлечения</span>
+          <a href="https://f4368178-droid.github.io/Saper-2.0/" class="project-link-btn">
+            подробнее <span class="arrow">→</span>
+          </a>
+        </div>
       </div>
 
-      <!-- Проект 3 -->
+      <!-- Проект 3: Список дел -->
       <div class="project-item">
-        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-          <span class="icon">?</span>
-          <span class="info">
-            <span class="name">???</span>
-            <span class="desc">?????</span>
-          </span>
-          <span class="arrow">→</span>
-        </a>
+        <span class="project-tag">📋 организатор</span>
+        <div class="project-name">Список дел</div>
+        <div class="project-desc">Добавление, выполнение и удаление задач с категориями.</div>
+        <div class="project-tech">
+          <span>JavaScript</span>
+          <span>HTML</span>
+          <span>CSS</span>
+        </div>
+        <div class="project-footer">
+          <span class="extra-tag"><strong>💾</strong> LocalStorage</span>
+          <a href="#" class="project-link-btn">
+            подробнее <span class="arrow">→</span>
+          </a>
+        </div>
       </div>
 
-      <!-- Проект 4 -->
+      <!-- Проект 4: Тахографы -->
       <div class="project-item">
-        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
-          <span class="icon">?</span>
-          <span class="info">
-            <span class="name">???</span>
-            <span class="desc">?????</span>
-          </span>
-          <span class="arrow">→</span>
-        </a>
+        <span class="project-tag">🏢 реальный проект</span>
+        <div class="project-name">Сайт для бизнеса по тахографам</div>
+        <div class="project-desc">Корпоративный сайт с каталогом, прайсом и формой заявки.</div>
+        <div class="project-tech">
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>PHP</span>
+        </div>
+        <div class="project-footer">
+          <span class="extra-tag"><strong>⚙️</strong> Бизнес</span>
+          <a href="#" class="project-link-btn">
+            подробнее <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Проект 5: Подсчёт отметок -->
+      <div class="project-item">
+        <span class="project-tag">📊 для школы</span>
+        <div class="project-name">Подсчёт отметок за контрольную</div>
+        <div class="project-desc">Сколько 10, 9, 8... в классе? Мгновенный подсчёт.</div>
+        <div class="project-tech">
+          <span>HTML</span>
+          <span>CSS</span>
+        </div>
+        <div class="project-footer">
+          <span class="extra-tag"><strong>📈</strong> Аналитика</span>
+          <a href="#" class="project-link-btn">
+            подробнее <span class="arrow">→</span>
+          </a>
+        </div>
       </div>
 
     </div>
 
-    <!-- Дополнительная ссылка -->
-    <div class="footer-action">
-      <a href="https://github.com/f4368178-droid/Portfolio" target="_blank" rel="noopener noreferrer">
-        <span>⚡</span> All projects on GitHub
-      </a>
+    <!-- ДОСТИЖЕНИЯ -->
+    <div class="achievements">
+      <div class="achievements-title">🏆 Мои достижения</div>
+      <div class="achievements-grid">
+        <div class="achievement-item">
+          <span class="number">5+</span>
+          <span class="label">Завершённых проектов</span>
+        </div>
+        <div class="achievement-item">
+          <span class="number">3</span>
+          <span class="label">Технологии в стеке</span>
+        </div>
+        <div class="achievement-item">
+          <span class="number">1</span>
+          <span class="label">Релиз на Suno</span>
+        </div>
+        <div class="achievement-item">
+          <span class="number">∞</span>
+          <span class="label">Идей в разработке</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Подвал -->
-    <div class="footer-note">
-      <span>KAMAZ</span>
-    </div>
   </div>
 </body>
 </html>
